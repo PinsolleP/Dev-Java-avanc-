@@ -6,7 +6,7 @@
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 .idea
-
+mariadb-java-client-2.3.0.jar
 
 # User-specific stuff
 .idea/**/workspace.xml
