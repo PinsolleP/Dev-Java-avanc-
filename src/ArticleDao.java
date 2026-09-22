@@ -109,7 +109,7 @@ public class ArticleDao {
         String sql = """
                 UPDATE t_articles
                 SET Description = ?, Brand = ?, UnitaryPrice = ?
-                WHERE Id_articles = ?
+                WHERE IdArticle = ?
                 """;
 
         try (Connection connection = Database.getConnection();
