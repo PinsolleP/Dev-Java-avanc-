@@ -9,10 +9,12 @@ public class ArticleDaoTest {
      *
      * @param args arguments de la ligne de commande
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         try {
             ArticleDao articleDao = new ArticleDao();
+            /*
+            System.out.println("=== TEST CREATE ===");
 
             Article article = new Article(
                     "Test Java",
@@ -25,6 +27,21 @@ public class ArticleDaoTest {
             System.out.println("Article créé !");
 
         } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+             */
+
+            System.out.println("\n=== TEST FIND BY ID ===");
+
+            Article articleTrouve = articleDao.findById(1);
+
+            if (articleTrouve != null) {
+                System.out.println("Article trouvé : " + articleTrouve);
+            } else {
+                System.out.println("Aucun article trouvé.");
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
