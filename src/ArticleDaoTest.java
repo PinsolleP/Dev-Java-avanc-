@@ -47,7 +47,7 @@ public class ArticleDaoTest {
             e.printStackTrace();
         }
 
-             */
+
 
             System.out.println("\n=== TESt FIND ALL ===");
 
@@ -59,5 +59,35 @@ public class ArticleDaoTest {
     } catch (SQLException e) {
             e.printStackTrace();
         }
+
+            System.out.println("\n=== TEST UPDATE ===");
+
+            Article article = articleDao.findById(13);
+
+            if (article != null) {
+
+                article.setDescription("Test java modifié");
+                article.setBrand("NouvelleBrand");
+                article.setPrice(30.0f);
+
+                articleDao.update(article);
+
+                System.out.println("Article modifié : " + article);
+
+            } else {
+                System.out.println("Article introuvable.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+
+            System.out.println("\n=== TEST DELETE ===");
+
+            articleDao.delete(13);
+
+            System.out.println("Article 13 supprimé.");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    }
 }
