@@ -7,6 +7,7 @@
 
 .idea
 mariadb-java-client-2.3.0.jar
+config.inc.php
 
 # User-specific stuff
 .idea/**/workspace.xml
