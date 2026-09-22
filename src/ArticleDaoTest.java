@@ -12,9 +12,9 @@ public class ArticleDaoTest {
      * @param args arguments de la ligne de commande
      */
 
-    /*
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+/*
         try {
             ArticleDao articleDao = new ArticleDao();
 
@@ -94,4 +94,11 @@ public class ArticleDaoTest {
 
         }
     }*/
+        Article article = new Article("Test", "TestBrand", 20.0f);
+        try {
+            article.setPrice(-10.0f);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erreur : " + e.getMessage());
+        }
+    }
 }
