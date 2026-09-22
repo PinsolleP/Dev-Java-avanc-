@@ -124,8 +124,24 @@ public class ArticleDao {
         }
 
     }
+    /**
+     * Supprime un article de la base de données.
+     * @param id identifiant de l'article à supprimer
+     * @throws SQLException si une erreur survient lors de l'accès à la base de données
+     */
+    public void delete(int id) throws SQLException{
 
-    public void delete(int id){
+        String sql = """
+                DELETE FROM t_articles
+                WHERE IdArticle = ?
+                """;
 
+        try (Connection connection = Database.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)){
+
+            statement.setInt(1, id);
+
+            statement.executeUpdate();
+        }
     }
 }
