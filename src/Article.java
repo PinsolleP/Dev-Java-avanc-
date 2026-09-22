@@ -38,6 +38,9 @@ public class Article {
     }
 
     public void setPrice(float price) {
+        if (price < 0) {
+            throw new IllegalArgumentException("Le prix ne peut pas être négatif.");
+        }
         this.price = price;
     }
 
