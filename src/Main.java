@@ -1,18 +1,26 @@
-import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 
 
 public class Main {
-
+    /**
+     * Point d'entrée de l'application.
+     * @param args arguments de la ligne de commande
+     */
     public static void main(String[] args){
 
         try {
-            Connection connection = Database.getConnection();
+            ArticleDao articleDao = new ArticleDao();
 
-            System.out.println("Connexion réussie !");
+            List<Article> articles = articleDao.findAll();
 
-            connection.close();
+            System.out.println("=== LISTE DES ARTICLES ===");
 
-        }catch (Exception e){
+            for (Article article : articles){
+                System.out.println(article);
+            }
+
+        }catch (SQLException e){
             e.printStackTrace();
 
         }
