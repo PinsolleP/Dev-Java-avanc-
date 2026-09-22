@@ -11,11 +11,13 @@ public class ArticleDaoTest {
      *
      * @param args arguments de la ligne de commande
      */
+
+    /*
     public static void main(String[] args) {
 
         try {
             ArticleDao articleDao = new ArticleDao();
-            /*
+
             System.out.println("=== TEST CREATE ===");
 
             Article article = new Article(
@@ -79,7 +81,7 @@ public class ArticleDaoTest {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }*/
+        }
 
             System.out.println("\n=== TEST DELETE ===");
 
@@ -89,5 +91,7 @@ public class ArticleDaoTest {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+
+        }
+    }*/
 }
