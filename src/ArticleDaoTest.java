@@ -1,4 +1,6 @@
 import java.sql.SQLException;
+import java.util.List;
+
 /**
  * Classe permettant de tester les opérations CRUD de {@link ArticleDao}.
  */
@@ -30,7 +32,7 @@ public class ArticleDaoTest {
             e.printStackTrace();
         }
 
-             */
+
 
             System.out.println("\n=== TEST FIND BY ID ===");
 
@@ -44,5 +46,18 @@ public class ArticleDaoTest {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+
+             */
+
+            System.out.println("\n=== TESt FIND ALL ===");
+
+            List<Article> articles = articleDao.findAll();
+
+            for (Article article : articles){
+                System.out.println(article);
+            }
+    } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        }
 }
