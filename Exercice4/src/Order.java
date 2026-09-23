@@ -13,7 +13,7 @@ public class Order {
     }
 
     public ArrayList<MenuItem> getItems(){
-        return items;
+        return new ArrayList<>(items);
     }
 
     public double getTotalPrice(){
