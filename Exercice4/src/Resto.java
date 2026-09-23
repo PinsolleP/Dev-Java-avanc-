@@ -73,7 +73,7 @@ public class Resto {
             order.addItem(item);
 
             try {
-                writer.write(order);
+                writer.write(order, i + 1);
             } catch (IOException e){
                 System.out.println("Erreur lors de l'écriture du fichier.");
             }
