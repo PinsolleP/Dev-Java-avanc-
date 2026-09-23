@@ -13,6 +13,8 @@ public class OrderFileWriter {
             writer.write(item.getName() + "\n");
         }
 
+        writer.write("Prix total : " + order.getTotalPrice() + "€\n");
+
         writer.write("\n");
 
         writer.close();
