@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -103,14 +104,20 @@ public class Resto {
 
             System.out.println("Quel élément souhaitez vous  ? [saisir le chiffre correspondant]");
 
-            choice = scan.nextInt();
+            try {
+                choice = scan.nextInt();
+                1
 
-            try{
                 if (choice < 1 || choice > menu.length) {
                     throw new IllegalArgumentException("Choix invalide.");
                 }
 
                 valid = true;
+
+            } catch (InputMismatchException e) {
+                System.out.println("Erreur : veuillez saisir un nombre.");
+                scan.next();
+
             } catch (IllegalArgumentException e){
                 System.out.println("Erreur : " + e.getMessage());
             }
