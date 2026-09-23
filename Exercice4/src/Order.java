@@ -11,4 +11,9 @@ public class Order {
     public void addItem(MenuItem item){
         items.add(item);
     }
+
+    @Override
+    public String toString(){
+        return items.toString();
+    }
 }
