@@ -71,7 +71,8 @@ public class Resto {
             order.addItem(item);
 
             System.out.println("Résumé de la commande "+(i+1));
-            System.out.println(order);		//ici on pourrait stocker la commande en base par exemple
+            System.out.println(order);    //ici on pourrait stocker la commande en base par exemple
+            System.out.println("Prix total : " + order.getTotalPrice() + " €");
             System.out.println();			//avant de passer à la suivante
 
         }
