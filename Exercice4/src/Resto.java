@@ -106,7 +106,6 @@ public class Resto {
 
             try {
                 choice = scan.nextInt();
-                1
 
                 if (choice < 1 || choice > menu.length) {
                     throw new IllegalArgumentException("Choix invalide.");
