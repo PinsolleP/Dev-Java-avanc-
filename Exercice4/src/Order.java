@@ -12,8 +12,18 @@ public class Order {
         items.add(item);
     }
 
+    public double getTotalPrice(){
+        double total = 0;
+
+        for (MenuItem item : items){
+            total += item.getPrice();
+        }
+        return total;
+    }
+
     @Override
     public String toString(){
         return items.toString();
     }
+
 }
