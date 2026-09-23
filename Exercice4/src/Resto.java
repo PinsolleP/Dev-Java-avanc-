@@ -11,11 +11,39 @@ import java.util.Scanner;
  */
 
 public class Resto {
-    public static final String [] STARTER = 	{"entrée", "salade","soupe","quiche","aucune"};
-    public static final String [] DISHES = 		{"plats" , "poulet" , "boeuf" , "poisson" , "végétarien" , "vegan","aucun"};
-    public static final String [] SIDE_DISH = 	{"accompagnements" , "riz" , "pates" , "frites" , "légumes","aucun"};
-    public static final String [] DRINKS = 		{"boissons" , "eau plate" , "eau gazeuze" , "soda" , "vin","aucune"};
-    public static final String [] DESSERTS = 	{"desserts" , "tarte maison" , "mousse au chocolat" , "tiramisu","aucun"};
+    public static final MenuItem[] STARTERS = 	{
+            new MenuItem("salade", 5.50),
+            new MenuItem("soupe",4.50),
+            new MenuItem("quiche", 6.00)
+    };
+
+    public static final MenuItem [] DISHES = 	{
+            new MenuItem("poulet", 10.00),
+            new MenuItem("boeuf",12.00),
+            new MenuItem("poisson", 11.00),
+            new MenuItem("végétarien",9.00),
+            new MenuItem("vegan", 9.00)
+    };
+
+    public static final MenuItem [] SIDE_DISHES = 	{
+            new MenuItem("riz", 3.00),
+            new MenuItem("pates",3.00),
+            new MenuItem("frites", 3.50),
+            new MenuItem("légumes", 3.50)
+    };
+
+    public static final MenuItem [] DRINKS = 	{
+            new MenuItem("eau plate", 2.00),
+            new MenuItem("eau gazeuse",2.00),
+            new MenuItem("soda", 3.00),
+            new MenuItem("vin", 5.00)
+    };
+
+    public static final MenuItem[] DESSERTS = 	{
+            new MenuItem("tarte maison", 5.00),
+            new MenuItem("mousse au chocolat",5.00),
+            new MenuItem("tiramisu", 6.00)
+    };
 
     public static void main(String[] args) {
         System.out.println("bonjour, combien de menus souhaitez vous ?");
@@ -23,44 +51,46 @@ public class Resto {
         int nbMenu;
         while(scan.hasNextInt() == false)	scan.next();
         nbMenu = scan.nextInt();
-        ArrayList<String>  order = new ArrayList<String>();
+
         for(int i = 0 ; i < nbMenu ; i ++) {
+            Order order = new Order();
             System.out.println("Commande numéro " + (i+1));
-            int result = getInfos(scan,STARTER[0]);
-            if(STARTER.length-1 > result)	order.add(STARTER[result]);
+            MenuItem item = getInfos(scan,STARTERS);
+            order.addItem(item);
 
-            result = getInfos(scan,DISHES[0]);
-            if(DISHES.length-1 > result)	order.add(DISHES[result]);
+            item = getInfos(scan,DISHES);
+            order.addItem(item);
 
-            result = getInfos(scan,SIDE_DISH[0]);
-            if(SIDE_DISH.length-1 > result)	order.add(SIDE_DISH[result]);
+            item = getInfos(scan,SIDE_DISHES);
+            order.addItem(item);
 
-            result = getInfos(scan,DRINKS[0]);
-            if(DRINKS.length-1 > result)	order.add(DRINKS[result]);
+            item = getInfos(scan,DRINKS);
+            order.addItem(item);
 
-            result = getInfos(scan,DESSERTS[0]);
-            if(DESSERTS.length-1 > result)	order.add(DESSERTS[result]);
+            item = getInfos(scan,DESSERTS);
+            order.addItem(item);
 
             System.out.println("Résumé de la commande "+(i+1));
             System.out.println(order);		//ici on pourrait stocker la commande en base par exemple
             System.out.println();			//avant de passer à la suivante
-            order.clear();
+
         }
         scan.close();
     }
-    public static int getInfos(Scanner scan, String info) {
-        System.out.println("choix " + info + " : ");
-        if(info.equalsIgnoreCase(STARTER[0]))	displayTable(STARTER);
-        else if(info.equalsIgnoreCase(DISHES[0]))	displayTable(DISHES);
-        else if(info.equalsIgnoreCase(SIDE_DISH[0]))	displayTable(SIDE_DISH);
-        else if(info.equalsIgnoreCase(DRINKS[0]))	displayTable(DRINKS);
-        else if(info.equalsIgnoreCase(DESSERTS[0]))	displayTable(DESSERTS);
-        System.out.println("que souhaitez vous comme "+ info + " ? [saisir le chiffre correspondant]");
-        return scan.nextInt();
+    public static MenuItem getInfos(Scanner scan, MenuItem[] menu) {
+        displayTable(menu);
+
+        System.out.println("Quel élément souhaitez vous  ? [saisir le chiffre correspondant]");
+
+        int choice = scan.nextInt();
+
+        return menu[choice - 1];
     }
-    public static void displayTable(String [] table) {
-        for(int i=1;i<table.length;i++) {
-            System.out.print("[" + i + " - " + table[i].toUpperCase() + "]");
+    public static void displayTable(MenuItem [] table) {
+        for(int i = 0 ; i < table.length ; i++) {
+            System.out.print("[" + (i + 1) + " - "
+                    + table[i].getName().toUpperCase()
+                    + " - " + table[i].getPrice() + " €]");
         }
         System.out.println();
     }
