@@ -12,6 +12,10 @@ public class Order {
         items.add(item);
     }
 
+    public ArrayList<MenuItem> getItems(){
+        return items;
+    }
+
     public double getTotalPrice(){
         double total = 0;
 
