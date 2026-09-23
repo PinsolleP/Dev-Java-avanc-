@@ -3,11 +3,17 @@ import java.io.IOException;
 
 public class OrderFileWriter {
 
-    public void write(Order order) throws IOException {
+    public void write(Order order, int orderNumber) throws IOException {
 
-        FileWriter writer = new FileWriter("orders.txt");
+        FileWriter writer = new FileWriter("orders.txt", true);
 
-        writer.write("Test commande\n");
+        writer.write("*****Résumé de la commande N°" + orderNumber + " *****\n");
+
+        for (MenuItem item : order.getItems()){
+            writer.write(item.getName() + "\n");
+        }
+
+        writer.write("\n");
 
         writer.close();
     }
