@@ -57,20 +57,26 @@ public class Resto {
             Order order = new Order();
             OrderFileWriter writer = new OrderFileWriter();
             System.out.println("Commande numéro " + (i+1));
-            MenuItem item = getInfos(scan,STARTERS);
-            order.addItem(item);
 
-            item = getInfos(scan,DISHES);
-            order.addItem(item);
+            try {
+                MenuItem item = getInfos(scan, STARTERS);
+                order.addItem(item);
 
-            item = getInfos(scan,SIDE_DISHES);
-            order.addItem(item);
+                item = getInfos(scan, DISHES);
+                order.addItem(item);
 
-            item = getInfos(scan,DRINKS);
-            order.addItem(item);
+                item = getInfos(scan, SIDE_DISHES);
+                order.addItem(item);
 
-            item = getInfos(scan,DESSERTS);
-            order.addItem(item);
+                item = getInfos(scan, DRINKS);
+                order.addItem(item);
+
+                item = getInfos(scan, DESSERTS);
+                order.addItem(item);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Erreur : " + e.getMessage());
+            }
 
             try {
                 writer.write(order, i + 1);
@@ -86,15 +92,32 @@ public class Resto {
         }
         scan.close();
     }
+
     public static MenuItem getInfos(Scanner scan, MenuItem[] menu) {
         displayTable(menu);
 
-        System.out.println("Quel élément souhaitez vous  ? [saisir le chiffre correspondant]");
+        boolean valid = false;
+        int choice = 0;
 
-        int choice = scan.nextInt();
+        while (!valid) {
 
+            System.out.println("Quel élément souhaitez vous  ? [saisir le chiffre correspondant]");
+
+            choice = scan.nextInt();
+
+            try{
+                if (choice < 1 || choice > menu.length) {
+                    throw new IllegalArgumentException("Choix invalide.");
+                }
+
+                valid = true;
+            } catch (IllegalArgumentException e){
+                System.out.println("Erreur : " + e.getMessage());
+            }
+        }
         return menu[choice - 1];
     }
+
     public static void displayTable(MenuItem [] table) {
         for(int i = 0 ; i < table.length ; i++) {
             System.out.print("[" + (i + 1) + " - "
