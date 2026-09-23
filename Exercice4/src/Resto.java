@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -54,6 +55,7 @@ public class Resto {
 
         for(int i = 0 ; i < nbMenu ; i ++) {
             Order order = new Order();
+            OrderFileWriter writer = new OrderFileWriter();
             System.out.println("Commande numéro " + (i+1));
             MenuItem item = getInfos(scan,STARTERS);
             order.addItem(item);
@@ -69,6 +71,12 @@ public class Resto {
 
             item = getInfos(scan,DESSERTS);
             order.addItem(item);
+
+            try {
+                writer.write(order);
+            } catch (IOException e){
+                System.out.println("Erreur lors de l'écriture du fichier.");
+            }
 
             System.out.println("Résumé de la commande "+(i+1));
             System.out.println(order);    //ici on pourrait stocker la commande en base par exemple
